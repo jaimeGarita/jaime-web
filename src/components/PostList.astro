@@ -1,0 +1,28 @@
+---
+import type { Post } from '../data/posts';
+import { posts } from '../data/posts';
+---
+
+<div class="blog-list">
+  {posts.map(post => (
+    <a href={`/blog/${post.slug}`}>{post.date}: {post.title}</a>
+  ))}
+</div>
+
+<style>
+  .blog-list {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  .blog-list a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+  }
+  .blog-list a:hover {
+    background-color: #333;
+  }
+</style>
