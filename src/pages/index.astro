@@ -1,80 +1,47 @@
 ---
-import PostList from "../components/PostList.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-  rel="stylesheet"
-/>
-<style>
-  body {
-    background-color: #1a1a1a;
-    color: #fff;
-    font-family: "Inter", sans-serif;
-  }
-  .intro {
-    text-align: center;
-    padding: 40px 20px;
-  }
-  .intro img {
-    width: 150px;
-    border-radius: 50%;
-  }
-  .intro h1 {
-    margin-top: 20px;
-    font-size: 2.5em;
-    color: #fff;
-  }
-  .intro p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    margin-top: 20px;
-  }
-  .intro #name-color {
-    color: #4caf50;
-  }
-  .intro #bold {
-    font-weight: bold;
-  }
-  .blog-list a {
-    display: block;
-    color: #4caf50;
-    text-decoration: none;
-    padding: 15px;
-    border-bottom: 1px solid #333;
-    transition:
-      background-color 0.3s,
-      color 0.3s;
-  }
-  .sub-title {
-    max-width: 60rem;
-    margin: auto;
-  }
-  .blog-list a:hover {
-    background-color: #333;
-    color: #fff;
-  }
-  .blog-list a:last-child {
-    border-bottom: none;
-  }
-</style>
 <Layout title="Jaime Garitagoitia">
-  <div class="intro">
-    <img src="/foto.PNG" alt="Foto" />
-    <h1>¡Hola! Soy <span id="name-color">Jaime Garitagoitia</span></h1>
-    <h1>Desarrollador <span id="name-color">Backend</span></h1>
-    <p class="sub-title">
-      Bienvenido a mi espacio digital, donde comparto mi viaje como
-      desarrollador
-      <span id="bold">Backend</span>. Aquí encontrarás una colección de mis
-      proyectos y reflexiones sobre <span id="bold">microservicios</span>,
-      <span id="bold">arquitecturas CQRS</span>, <span id="bold">DDD</span> y más.
-      <br /><br />
-      Acompáñame mientras exploramos las últimas tecnologías y mejores prácticas
-      en el mundo del desarrollo <span style="font-style: italic;"
-        >(al menos bajo mi punto de vista)</span
-      >. ¡Espero que disfrutes de esta aventura conmigo!
-    </p>
+
+  <div class="w-8/12 w-6/12 mx-auto">
+      <img src="../../public/foto.png" class="rounded-full w-8/12 w-6/12 mx-auto w-80 p-10">
+    <h1
+      class="text-5xl md:text-6xl text-center shadow-md drop-shadow-[10px_10px_35px_rgba(39,245,131,0.6)]"
+    >
+      ¡Hola! 👋, Soy Jaime Garitagoitia
+    </h1>
+
+	<div id="typed-strings" style="display: none;">
+		<p>Me especializo en desarrollo <strong>Backend</strong>. 
+		<p><em>Trabajo principalmente con Java, Microservicios y DDD.</em></p></p>
+		
+	  </div>
+
+    <div class="text-center mt-6">
+      <span id="typed"></span>
+    </div>
   </div>
 </Layout>
+
+<script>
+    import("typed.js").then(({ default: Typed }) => {
+      let typedInstance;
+
+      const initializeTyped = () => {
+        if (typedInstance) {
+          typedInstance.destroy(); // Destruye la instancia previa
+        }
+        if (document.querySelector("#typed")) {
+          typedInstance = new Typed("#typed", {
+            stringsElement: "#typed-strings",
+            typeSpeed: 50,
+            loop: true,
+          });
+        }
+      };
+
+      document.addEventListener("astro:page-load", initializeTyped);
+      initializeTyped();
+    });
+</script>

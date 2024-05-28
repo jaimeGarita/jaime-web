@@ -1,6 +1,7 @@
 ---
 import ViewTransitions from 'astro/components/ViewTransitions.astro';
-import Navbar from '../components/Navbar.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
@@ -19,51 +20,19 @@ const { title } = Astro.props;
 		<meta name="author" content="Jaime Garitagoitia" />
 		<ViewTransitions></ViewTransitions>
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<Navbar></Navbar>
-		<div id="content">
+	<style>
+		body{
+			font-family: "Carlito", sans-serif;
+			min-height: 100vh;
+		}
+	</style>
+	<body class="bg-slate-900 text-white grid gap-0">
+		<Nav />
 		<slot />
-		</div>
+		<Footer />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--color-main: #1a1a1a;
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	#content{
-		max-width: 60rem;
-        margin: auto;
-	}
-	html {
-		color: #fff;
-        font-family: "Inter", sans-serif;
-        margin: 0;
-        padding: 0;
-		font-family: system-ui, sans-serif;
-		background-color:var(--color-main);
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

@@ -1,0 +1,21 @@
+---
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+---
+
+<header class="lg:flex p-5 gap-5">
+  <Astronav>
+    <div class="flex w-full justify-between">
+      <a>JG</a>
+      <div class="block lg:hidden">
+        <MenuIcon class="w-4 h-4 text-white" />
+      </div>
+    </div>
+    <MenuItems class="hidden lg:flex">
+      <ul class="flex flex-col lg:flex-row lg:gap-5">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li ><a href ="/about">Contacto</a></li>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</header>

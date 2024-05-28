@@ -1,28 +1,32 @@
 ---
-import type { Post } from '../data/posts';
-import { posts } from '../data/posts';
+import { posts } from "../data/posts";
+import Layout from "../layouts/Layout.astro";
 ---
+<div class="mx-auto p-1">
+<p class="pb-10 text-1xl">
+  Bienvenido a mi espacio digital, donde comparto mi viaje como
+  desarrollador
+  <strong>Backend</strong>. Aquí encontrarás una colección de mis
+  proyectos y reflexiones sobre <strong>microservicios</strong>,
+  <strong>arquitecturas CQRS</strong>, <strong>DDD</strong> y más.
+  <br />
+  Acompáñame mientras exploramos las últimas tecnologías y mejores prácticas
+  en el mundo del desarrollo <i
+    >(al menos bajo mi punto de vista)</i
+  >. ¡Espero que disfrutes de esta aventura conmigo!
+</p>
 
-<div class="blog-list">
-  {posts.map(post => (
-    <a href={`/blog/${post.slug}`}>{post.date}: {post.title}</a>
-  ))}
+
+
+  
+  {
+    posts.map((post) => (
+      <a
+        href={`/blog/${post.slug}`}
+        class="block text-white no-underline py-1 border-b border-gray-700 hover:bg-gray-700"
+      >
+        {post.date}: {post.title}
+      </a>
+    ))
+  }
 </div>
-
-<style>
-  .blog-list {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-  }
-  .blog-list a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 0;
-    border-bottom: 1px solid #333;
-  }
-  .blog-list a:hover {
-    background-color: #333;
-  }
-</style>
