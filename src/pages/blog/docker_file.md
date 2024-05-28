@@ -18,11 +18,11 @@ Imagínate que una imágen en Docker es como un paquete con todo lo necesario pa
 
 <h3 style="color: #9ECBFF;">Pongamos un pequeño ejemplo:</h3>
 
-Todos los proyectos Java necesitan su ración de Java, ¿no? Pues aquí no es la excepción. Necesitamos un buen *OpenJDK* y un archivo *.jar*, que es básicamente el fruto de nuestras horas de compilación, donde residen todas esas clases .class que tanto nos ha costado escribir.
+Todos los proyectos Java necesitan su ración de Java, ¿no? Pues aquí no es la excepción. Necesitamos un buen _OpenJDK_ y un archivo _.jar_, que es básicamente el fruto de nuestras horas de compilación, donde residen todas esas clases .class que tanto nos ha costado escribir.
 
 Ahora, ¿cómo metemos todo eso en nuestro Dockerfile? parece fácil ¿verdad? Pero... ¿será tan sencillo como parece?
 
-Bajo mi opinión, todos debemos de empezar creando un Dockerfile mas *sencillo* como el ejemplo que se va a poner a continuación:
+Bajo mi opinión, todos debemos de empezar creando un Dockerfile mas _sencillo_ como el ejemplo que se va a poner a continuación:
 
 ```dockerfile
 
@@ -42,4 +42,3 @@ Donde:
 - <span style="color:#F97583">`WORKDIR`</span> : Se establece en donde se va a trabajar, posteriormente se van a usar para las instrucciones en el contenedor
 - <span style="color:#F97583">`COPY`</span> : Como esta instrucción indica, nos permite copiar uno o varios archivos de nuestro local a la imágen.
 - <span style="color:#F97583">`CMD`</span> : Define el ejecutable por defecto de una imágen Docker. En este caso, el contenedor ejecuta el proceso especificado por el terminal. Para que sea mas sencillo, todas las instrucciones necesarias que tu pondrias en una terminal para ejecutar el proyecto.
-
