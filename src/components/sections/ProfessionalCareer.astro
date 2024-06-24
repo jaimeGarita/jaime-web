@@ -1,0 +1,83 @@
+---
+import { info } from "../../data/info";
+---
+
+<section
+  id="sobre-mi"
+  class="h-screen flex flex-col items-center justify-center transition-opacity duration-1000 ease-out"
+>
+  <div class="container mx-auto max-w-3xl">
+    <h2 class="text-4xl font-bold mb-8 text-center pb-20">
+      {info.titleExperience}
+    </h2>
+
+    <!-- Línea de tiempo -->
+    <ul class="relative timeline">
+      {
+        info.experience.map((exp, index) => (
+          <li class="mb-12">
+            <div class="flex items-start mb-8">
+              <div class="flex-shrink-0">
+                <span class="timeline-marker bg-blue-500" />
+              </div>
+              <div class="ml-4">
+                <div class="flex flex-row-reverse items-center justify-end mb-3">
+                  <h3 class="text-2xl font-semibold">{exp.name}</h3>
+                  <img
+                    src={exp.img}
+                    alt={`${exp.name} logo`}
+                    class=" w-1/12 h-1/12 p-1"
+                  />
+                </div>
+                <p class="text-lg">{exp.position}</p>
+
+                <ul class="list-item p-1">
+                  {exp.description.map((desc, idx) => (
+                    <li class="text-gray-600 leading-relaxed">{desc}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Línea de tiempo para la educación -->
+    <ul class="relative timeline">
+      {
+        info.education.map((edu, index) => (
+          <li class="mb-12">
+            <div class="flex items-start mb-8">
+              <div class="flex-shrink-0">
+                <span class="timeline-marker bg-blue-500" />
+              </div>
+              <div class="ml-4">
+                <div class="flex flex-row-reverse items-center justify-end mb-3">
+                  <h3 class="text-2xl font-semibold">{edu.name}</h3>
+                  <img
+                    src={edu.img}
+                    alt={`${edu.site} logo`}
+                    class=" w-[10%] h-[10%] p-1"
+                  />
+                </div>
+                <p class="text-lg">
+                  {edu.site}, {edu.location}
+                </p>
+
+                <ul class="list-item p-1">
+                  {edu.description.map((desc, idx) => (
+                    <li class="text-gray-600 leading-relaxed">{desc}</li>
+                  ))}
+                </ul>
+                <p class="text-sm text-gray-400 mt-2">
+                  {edu.startDate} - {edu.endDate}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

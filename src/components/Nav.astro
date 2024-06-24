@@ -1,21 +1,17 @@
 ---
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { info } from "../data/info";
+import { createLogo } from '../utils';
 ---
 
-<header class="lg:flex p-5 gap-5">
-  <Astronav>
-    <div class="flex w-full justify-between">
-      <a>JG</a>
-      <div class="block lg:hidden">
-        <MenuIcon class="w-4 h-4 text-white" />
-      </div>
-    </div>
-    <MenuItems class="hidden lg:flex">
-      <ul class="flex flex-col lg:flex-row lg:gap-5">
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li ><a href ="/about">Contacto</a></li>
-      </ul>
-    </MenuItems>
-  </Astronav>
+<header class="container flex items-center justify-between h-[80px] sm:h-[123px] m-auto">
+    <a
+        class="text-2xl dark:text-light font-semibold dark:font-semibold font-outfit"
+        href="/"
+        >{createLogo(info.name)}.
+    </a>
+    <nav>
+        <ul class="flex items-center">
+        </ul>
+    </nav>
 </header>
+

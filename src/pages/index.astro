@@ -1,47 +1,82 @@
 ---
+import Home from "../components/sections/Home.astro";
+import ProfessionalCareer from "../components/sections/ProfessionalCareer.astro";
 import Layout from "../layouts/Layout.astro";
+import Projects from "../components/sections/Projects.astro";
 ---
 
 <Layout title="Jaime Garitagoitia">
-
-  <div class="w-8/12 w-6/12 mx-auto">
-      <img src="/foto.PNG" class="rounded-full w-8/12 w-6/12 mx-auto w-80 p-10">
-    <h1
-      class="text-5xl md:text-6xl text-center drop-shadow-[10px_10px_35px_rgba(39,245,131,0.6)]"
-    >
-      ¡Hola! 👋, Soy Jaime Garitagoitia
-    </h1>
-
-	<div id="typed-strings" style="display: none;">
-		<p>Me especializo en desarrollo <strong>Backend</strong>. 
-		<p><em>Trabajo principalmente con Java, Microservicios y DDD.</em></p></p>
-		
-	  </div>
-
-    <div class="text-center mt-6">
-      <span id="typed"></span>
-    </div>
-  </div>
+  <Home />
+  <ProfessionalCareer />
+  <Projects />
 </Layout>
-
+<!-- Scripts -->
 <script>
-    import("typed.js").then(({ default: Typed }) => {
-      let typedInstance;
+  import("typed.js").then(({ default: Typed }) => {
+    let typedInstance;
 
-      const initializeTyped = () => {
-        if (typedInstance) {
-          typedInstance.destroy(); // Destruye la instancia previa
-        }
-        if (document.querySelector("#typed")) {
-          typedInstance = new Typed("#typed", {
-            stringsElement: "#typed-strings",
-            typeSpeed: 50,
-            loop: true,
-          });
-        }
-      };
+    const initializeTyped = () => {
+      if (typedInstance) {
+        typedInstance.destroy(); // Destruye la instancia previa
+      }
+      if (document.querySelector("#typed")) {
+        typedInstance = new Typed("#typed", {
+          stringsElement: "#typed-strings",
+          typeSpeed: 50,
+          loop: true,
+        });
+      }
+    };
 
-      document.addEventListener("astro:page-load", initializeTyped);
-      initializeTyped();
-    });
+    document.addEventListener("astro:page-load", initializeTyped);
+    initializeTyped();
+  });
+
+  // Script para el desplazamiento suave
+  const sections = document.querySelectorAll("section");
+  let isScrolling = false;
+
+  const scrollToSection = (section) => {
+    section.scrollIntoView({ behavior: "smooth" });
+    isScrolling = true;
+    setTimeout(() => {
+      isScrolling = false;
+    }, 1000); // Ajusta el tiempo según la duración del desplazamiento
+  };
+
+  document.addEventListener("wheel", (event) => {
+    if (isScrolling) return;
+    const delta = Math.sign(event.deltaY);
+    const currentSectionIndex = [...sections].findIndex(
+      (section) => section.offsetTop >= window.scrollY
+    );
+    let targetSection;
+    if (delta > 0 && currentSectionIndex < sections.length - 1) {
+      targetSection = sections[currentSectionIndex + 1];
+    } else if (delta < 0 && currentSectionIndex > 0) {
+      targetSection = sections[currentSectionIndex - 1];
+    }
+    if (targetSection) {
+      scrollToSection(targetSection);
+    }
+  });
+
+  // Añadir animaciones de entrada
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("opacity-100");
+        } else {
+          entry.target.classList.remove("opacity-100");
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  sections.forEach((section) => {
+    section.classList.add("opacity-0");
+    observer.observe(section);
+  });
 </script>
